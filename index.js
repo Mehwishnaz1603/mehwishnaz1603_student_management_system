@@ -4,12 +4,13 @@ import chalk from 'chalk';
 let students = [];
 console.log(chalk.yellowBright.bold.underline("\n\t  Welcome to the Student Management System with MehwishNaz  \n\t"));
 const student_Management_System = () => {
+    console.log(chalk.greenBright.underline("choose an option"));
     inquirer.prompt([
-        { name: 'option', type: 'list', mesage: 'Choose an option:',
+        { name: 'options', type: 'list', mesage: 'Choose an option:',
             choices: ['Add Student Information', 'List Of Students Information', 'Exit'] },
     ])
         .then((answers) => {
-        switch (answers.option) {
+        switch (answers.options) {
             case 'Add Student Information':
                 addStudentInformation();
                 break;
@@ -17,7 +18,7 @@ const student_Management_System = () => {
                 listOfStudentsInformation();
                 break;
             case 'Exit':
-                console.log('Exiting program...');
+                console.log(chalk.yellowBright.bold('Exiting program...'));
                 process.exit(0);
                 break;
             default:
@@ -53,7 +54,7 @@ const listOfStudentsInformation = () => {
     console.log('List of Students:');
     students.forEach((student) => {
         console.log(chalk.yellowBright.bold(`name: ${student.name},id: ${student.id}, course: ${student.courses},
- grade: ${student.grade}, fees: ${student.fees}, Balance: ${student.balance}`));
+    grade: ${student.grade}, fees: ${student.fees}, Balance: ${student.balance}`));
     });
     student_Management_System();
 };

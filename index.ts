@@ -6,20 +6,21 @@ let students: Student[] = [];
 console.log(chalk.yellowBright.bold.underline("\n\t  Welcome to the Student Management System with MehwishNaz  \n\t"));
 
 const student_Management_System = () => {
- inquirer.prompt([
-    {name: 'option', type: 'list',  mesage: 'Choose an option:',
-     choices: ['Add Student Information', 'List Of Students Information', 'Exit'] },
-    ])
+console.log(chalk.greenBright.underline("choose an option"))
+     inquirer.prompt([
+    {name: 'options', type: 'list',  mesage: 'Choose an option:',
+    choices: ['Add Student Information', 'List Of Students Information', 'Exit'] },
+])
         .then((answers) => {
-            switch (answers.option) {
+            switch (answers.options) {
                 case 'Add Student Information':
                     addStudentInformation();
                     break;
                 case 'List Of Students Information':
-                    listOfStudentsInformation();
+                    listOfStudentsInformation()
                     break;
                 case 'Exit':
-                    console.log('Exiting program...');
+                    console.log(chalk.yellowBright('Exiting program...'));
                     process.exit(0);
                     break;
                 default:
@@ -53,7 +54,7 @@ const addStudentInformation = () => {
     const listOfStudentsInformation = () => {
     console.log('List of Students:');
     students.forEach((student) => {
-    console.log(chalk.yellowBright.bold(`name: ${student.name},id: ${student.id}, course: ${student.courses},
+    console.log(chalk.yellowBright(`name: ${student.name},id: ${student.id}, course: ${student.courses},
     grade: ${student.grade}, fees: ${student.fees}, Balance: ${student.balance}`));
     });
     student_Management_System();
