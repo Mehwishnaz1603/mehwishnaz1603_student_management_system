@@ -1,10 +1,6 @@
 #!/usr/bin/env node
 import inquirer from 'inquirer';
 import chalk from 'chalk';
-const generateStudentId = () => {
-    // Generate a random 6-digit student ID
-    return Math.floor(100000 + Math.random() * 900000);
-};
 ;
 let students = [];
 console.log(chalk.yellowBright.bold.underline("\n\t  Welcome to the Student Management System with MehwishNaz  \n\t"));
@@ -37,7 +33,8 @@ const addStudentInformation = () => {
         { name: 'fathername', type: 'string', message: 'Enter Student Father Name:' },
         { name: 'age', type: 'number', message: 'Enter Student Age:', },
         { name: 'id', type: 'number', message: 'Enter Student Id:' },
-        { name: 'course', type: 'any', message: 'Enter Student Course:' },
+        { name: 'courses', type: 'checkbox', message: 'Delect Student Courses:',
+            choices: ['GenAI, Web3.0 And Metaverse', 'Graphics Desigining', 'English Language', 'Cyber Security'] },
         { name: 'day', type: 'string', message: 'Enter Student Day:' },
         { name: 'timing', type: 'any', message: 'Enter Student Timing:', },
         { name: 'duration', type: 'any', message: 'Enter Student Course Duration:' },
@@ -49,8 +46,8 @@ const addStudentInformation = () => {
             name: answers.name,
             fathername: answers.fathername,
             age: answers.age,
-            id: generateStudentId(),
-            course: answers.course,
+            id: Math.floor(Math.random() * 1000), // Generates a random number between 0 and 999
+            courses: answers.course,
             day: answers.day,
             timing: answers.timing,
             duration: answers.duration,
@@ -66,7 +63,7 @@ const listOfStudentsInformation = () => {
     console.log('List of Students:');
     students.forEach((student) => {
         console.log(chalk.yellowBright(`name: ${student.name}, fathername: ${student.fathername}, age :${student.name}, id: ${student.id}, 
-    course: ${student.course}, day: ${student.day}, timig: ${student.timing}, duration: ${student.duration}, fees: ${student.fees}, 
+    course: ${student.courses}, day: ${student.day}, timig: ${student.timing}, duration: ${student.duration}, fees: ${student.fees}, 
     balance: ${student.balance}`));
     });
     student_Management_System();
