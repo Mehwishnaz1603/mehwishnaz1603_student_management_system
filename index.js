@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 import inquirer from 'inquirer';
 import chalk from 'chalk';
-;
 let students = [];
+let studentIdCounter = 10000; // Initialize ID counter
 console.log(chalk.yellowBright.bold.underline("\n\t  Welcome to the Student Management System with MehwishNaz  \n\t"));
 const student_Management_System = () => {
     inquirer.prompt([
-        { name: 'options', type: 'list', message: 'Choose an Option:',
-            choices: ['Add Student Information', 'List Of Student Information', 'Exit'] },
+        {
+            name: 'options', type: 'list',
+            message: 'Choose an Option:', choices: ['Add Student Information', 'List Of Student Information', 'Exit']
+        },
     ])
         .then((answers) => {
         switch (answers.options) {
@@ -32,22 +34,21 @@ const addStudentInformation = () => {
         { name: 'name', type: 'string', message: 'Enter Student Name:' },
         { name: 'fathername', type: 'string', message: 'Enter Student Father Name:' },
         { name: 'age', type: 'number', message: 'Enter Student Age:', },
-        { name: 'id', type: 'number', message: 'Enter Student Id:' },
-        { name: 'courses', type: 'checkbox', message: 'Delect Student Courses:',
+        { name: 'courses', type: 'list', message: 'Delect Student Courses:',
             choices: ['GenAI, Web3.0 And Metaverse', 'Graphics Desigining', 'English Language', 'Cyber Security'] },
         { name: 'day', type: 'string', message: 'Enter Student Day:' },
-        { name: 'timing', type: 'any', message: 'Enter Student Timing:', },
+        { name: 'timing', type: 'any', message: 'Enter Student Timing:' },
         { name: 'duration', type: 'any', message: 'Enter Student Course Duration:' },
         { name: 'fees', type: 'number', message: 'Enter Student Fees:' },
         { name: 'balance', type: 'number', message: 'Enter Student Balance:' }
     ])
         .then((answers) => {
         const newStudent = {
+            id: ++studentIdCounter, // For Increment and assign automatic ID
             name: answers.name,
             fathername: answers.fathername,
             age: answers.age,
-            id: Math.floor(Math.random() * 1000), // Generates a random number between 0 and 999
-            courses: answers.course,
+            courses: answers.courses,
             day: answers.day,
             timing: answers.timing,
             duration: answers.duration,
@@ -62,9 +63,16 @@ const addStudentInformation = () => {
 const listOfStudentsInformation = () => {
     console.log('List of Students:');
     students.forEach((student) => {
-        console.log(chalk.yellowBright(`name: ${student.name}, fathername: ${student.fathername}, age :${student.name}, id: ${student.id}, 
-    course: ${student.courses}, day: ${student.day}, timig: ${student.timing}, duration: ${student.duration}, fees: ${student.fees}, 
-    balance: ${student.balance}`));
+        console.log(chalk.yellowBright(`id: ${student.id}, 
+        name: ${student.name}, 
+        fathername: ${student.fathername}, 
+        age :${student.name}, 
+        course: ${student.courses}, 
+        day: ${student.day}, 
+        timig: ${student.timing}, 
+        duration: ${student.duration}, 
+        fees: ${student.fees}, 
+        balance: ${student.balance}`));
     });
     student_Management_System();
 };
