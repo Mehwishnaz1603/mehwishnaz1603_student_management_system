@@ -34,7 +34,7 @@ const addStudentInformation = () => {
         { name: 'name', type: 'string', message: 'Enter Student Name:' },
         { name: 'fathername', type: 'string', message: 'Enter Student Father Name:' },
         { name: 'age', type: 'number', message: 'Enter Student Age:', },
-        { name: 'courses', type: 'list', message: 'Delect Student Courses:',
+        { name: 'courses', type: 'list', message: 'Select Student Courses:',
             choices: ['GenAI, Web3.0 And Metaverse', 'Graphics Desigining', 'English Language', 'Cyber Security'] },
         { name: 'day', type: 'string', message: 'Enter Student Day:' },
         { name: 'timing', type: 'any', message: 'Enter Student Timing:' },
